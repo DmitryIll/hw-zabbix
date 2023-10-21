@@ -54,7 +54,6 @@ a. Install Zabbix repository
 # apt update
 ```
 
-Редактировать эту секцию
 b. Install Zabbix server, frontend, agent
 
 ```
@@ -63,7 +62,8 @@ b. Install Zabbix server, frontend, agent
 
 Можно проверить:
 
-```systemctl status zabbix-server.service```
+```systemctl status zabbix-server.service
+```
 ○ zabbix-server.service - Zabbix Server
      Loaded: loaded (/lib/systemd/system/zabbix-server.service; disabled; vendor preset: enabled)
      Active: inactive (dead)
@@ -76,23 +76,30 @@ Make sure you have database server up and running.
 
 Run the following on your database host.
 
-```# sudo -u postgres createuser --pwprompt zabbix
-# sudo -u postgres createdb -O zabbix zabbix```
+```
+# sudo -u postgres createuser --pwprompt zabbix
+# sudo -u postgres createdb -O zabbix zabbix
+```
 
 Альтернатива:
 
+```
 su - postgres -c 'psql --command "CREATE USER zabbix WITH PASSWORD '\'12345\'';"'
 su - postgres -c 'psql --command "CREATE DATABASE zabbix OWNER zabbix;"'
+```
 
 Если нужно изменить пароль можно так:
 
+```
 su - postgres -c 'psql --command "ALTER USER zabbix WITH PASSWORD '\'12345\'';"'
+```
 
 On Zabbix server host import initial schema and data. You will be prompted to enter your newly created password.
 
-```# zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix```
+```
+# zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
+```
 
-Редактировать эту секцию
 d. Configure the database for Zabbix server
 
 Edit file /etc/zabbix/zabbix_server.conf
@@ -119,8 +126,10 @@ f. Start Zabbix server and agent processes
 
 Start Zabbix server and agent processes and make it start at system boot.
 
-```# systemctl restart zabbix-server zabbix-agent nginx php8.1-fpm
-# systemctl enable zabbix-server zabbix-agent nginx php8.1-fpm```
+```
+# systemctl restart zabbix-server zabbix-agent nginx php8.1-fpm
+# systemctl enable zabbix-server zabbix-agent nginx php8.1-fpm
+```
 
 Редактировать эту секцию
 g. Open Zabbix UI web page
@@ -130,7 +139,8 @@ Start using Zabbix
 
 Проверить:
 
-```systemctl status zabbix-server.service```
+```systemctl status zabbix-server.service
+```
 ● zabbix-server.service - Zabbix Server
      Loaded: loaded (/lib/systemd/system/zabbix-server.service; enabled; vendor preset: enabled)
      Active: active (running) since Tue 2023-10-17 16:07:33 UTC; 21s ago
@@ -166,12 +176,14 @@ https://www.zabbix.com/download
 
 И выбираем что только агент хотим.
 
-```# wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu22.04_all.deb
+```
+# wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu22.04_all.deb
 # dpkg -i zabbix-release_6.0-4+ubuntu22.04_all.deb
 # apt update 
 # apt install zabbix-agent
 # systemctl restart zabbix-agent
-# systemctl enable zabbix-agent``` 
+# systemctl enable zabbix-agent
+``` 
 
 Еще я создал А запись z.dmil.ru что бы при рестарте ВМ не менять конфиг, а менять А запись.
 
