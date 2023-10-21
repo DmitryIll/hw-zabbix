@@ -113,15 +113,16 @@ find / -name zabbix_server.conf
 find / -name zabbix_agent.conf
 
 или можно Sed использовать.
-Редактировать эту секцию
+
 e. Configure PHP for Zabbix frontend
 
 Edit file /etc/zabbix/nginx.conf uncomment and set 'listen' and 'server_name' directives.
 
+```
 # listen 8080;
 # server_name example.com;
+```
 
-Редактировать эту секцию
 f. Start Zabbix server and agent processes
 
 Start Zabbix server and agent processes and make it start at system boot.
@@ -131,7 +132,6 @@ Start Zabbix server and agent processes and make it start at system boot.
 # systemctl enable zabbix-server zabbix-agent nginx php8.1-fpm
 ```
 
-Редактировать эту секцию
 g. Open Zabbix UI web page
 
 The URL for Zabbix UI when using Nginx depends on the configuration changes you should have made.
@@ -139,7 +139,8 @@ Start using Zabbix
 
 Проверить:
 
-```systemctl status zabbix-server.service
+```
+systemctl status zabbix-server.service
 ```
 ● zabbix-server.service - Zabbix Server
      Loaded: loaded (/lib/systemd/system/zabbix-server.service; enabled; vendor preset: enabled)
@@ -151,7 +152,6 @@ Start using Zabbix
      CGroup: /system.slice/zabbix-server.service
              └─1679 /usr/sbin/zabbix_server -c /etc/zabbix/zabbix_server.conf
 
-Редактировать эту секцию
 Настраиваем Web интерфейс
 Редактировать эту секцию
 настраиваем параметры
@@ -168,7 +168,6 @@ next
     Admin
     zabbix
 
-Редактировать эту секцию
 ##### Установить Zabbix агент
 
 Опять сюда:
