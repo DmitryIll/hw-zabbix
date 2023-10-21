@@ -45,7 +45,7 @@ https://www.zabbix.com/download
 
 Лучше стабильную версию lts.
 Ниже генерят нам код.
-Редактировать эту секцию
+
 a. Install Zabbix repository
 
 ```
