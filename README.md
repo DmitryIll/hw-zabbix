@@ -16,6 +16,7 @@
 
     Прикрепите в файл README.md скриншот авторизации в админке.
     Приложите в файл README.md текст использованных команд в GitHub.
+
 #### Решение
 
 ![Alt text](image.png)
@@ -47,14 +48,18 @@ https://www.zabbix.com/download
 Редактировать эту секцию
 a. Install Zabbix repository
 
-```# wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu22.04_all.deb
+```
+# wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu22.04_all.deb
 # dpkg -i zabbix-release_6.0-4+ubuntu22.04_all.deb
-# apt update```
+# apt update
+```
 
 Редактировать эту секцию
 b. Install Zabbix server, frontend, agent
 
-```# apt install zabbix-server-pgsql zabbix-frontend-php php8.1-pgsql zabbix-nginx-conf zabbix-sql-scripts zabbix-agent```
+```
+# apt install zabbix-server-pgsql zabbix-frontend-php php8.1-pgsql zabbix-nginx-conf zabbix-sql-scripts zabbix-agent
+```
 
 Можно проверить:
 
