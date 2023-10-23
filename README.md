@@ -194,18 +194,111 @@ https://www.zabbix.com/download
 Установите Zabbix Agent на два хоста.
 Процесс выполнения
 
-    Выполняя ДЗ, сверяйтесь с процессом отражённым в записи лекции.
-    Установите Zabbix Agent на 2 вирт.машины, одной из них может быть ваш Zabbix Server.
-    Добавьте Zabbix Server в список разрешенных серверов ваших Zabbix Agentов.
-    Добавьте Zabbix Agentов в раздел Configuration > Hosts вашего Zabbix Servera.
-    Проверьте, что в разделе Latest Data начали появляться данные с добавленных агентов.
+Выполняя ДЗ, сверяйтесь с процессом отражённым в записи лекции.
+Установите Zabbix Agent на 2 вирт.машины, одной из них может быть ваш Zabbix Server.
+Добавьте Zabbix Server в список разрешенных серверов ваших Zabbix Agentов.
+Добавьте Zabbix Agentов в раздел Configuration > Hosts вашего Zabbix Servera.
+Проверьте, что в разделе Latest Data начали появляться данные с добавленных агентов.
 
 #### Требования к результаты
 
-    Приложите в файл README.md скриншот раздела Configuration > Hosts, где видно, что агенты подключены к серверу
-    Приложите в файл README.md скриншот лога zabbix agent, где видно, что он работает с сервером
-    Приложите в файл README.md скриншот раздела Monitoring > Latest data для обоих хостов, где видны поступающие от агентов данные.
-    Приложите в файл README.md текст использованных команд в GitHub
+Приложите в файл README.md скриншот раздела Configuration > Hosts, где видно, что агенты подключены к серверу
+
+![Alt text](image-1.png)
+
+Приложите в файл README.md скриншот лога zabbix agent, где видно, что он работает с сервером
+![Alt text](image-2.png)
+
+
+Приложите в файл README.md скриншот раздела Monitoring > Latest data для обоих хостов, где видны поступающие от агентов данные.
+![Alt text](image-3.png)
+
+Приложите в файл README.md текст использованных команд в GitHub
+
+- тут не понял какие команды нужно полжить? Какие команды использовал в GitHub ? никакие склонировал репозиторий через web интерфейс.
+Или тут нужно команды по установке заббикс агента?
+
+Вот мои заметки:
+
+---
+
+## Установить Zabbix агент
+
+Опять сюда:
+https://www.zabbix.com/download
+
+И выбираем что только агент хотим.
+
+```
+wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu22.04_all.deb
+dpkg -i zabbix-release_6.0-4+ubuntu22.04_all.deb
+apt update 
+apt install zabbix-agent
+systemctl restart zabbix-agent
+systemctl enable zabbix-agent 
+```
+Файлы конфига и лога Zabbix агента
+
+    zabbix_agentd.conf
+    zabbix_agentd.log
+
+Найти файл конфига zabbix агента
+
+```
+find / -name zabbix_agentd.conf
+```
+
+```find / -name zabbix_agentd.conf
+/etc/zabbix/zabbix_agentd.conf
+nano /etc/zabbix/zabbix_agentd.conf
+```
+
+Установить сервер в конфиге агента
+
+Правим с
+
+```
+Server=127.0.0.1
+```
+
+на:
+
+```
+Server=z.dmil.ru
+```
+
+
+- но так не заработало почему-то.
+Поставил IP:
+
+```
+Server=84.201.142.191
+```
+
+и в самом заббикс сервере тоже указал через IP.
+
+Через запятую можно указать много IP или целую подсеть.
+
+потом нужно:
+
+```
+systemctl restart zabbix-agent.service
+```
+
+Найти файл лога zabbix агента
+
+```
+find / -name zabbix_agentd.log
+```
+
+```
+tail -f /var/log/zabbix/zabbix_agentd.log
+```
+
+---
+
+
+
 
 ## Задание 3 со звёздочкой*
 
