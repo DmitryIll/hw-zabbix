@@ -210,6 +210,8 @@ https://www.zabbix.com/download
 ![Alt text](image-2.png)
 
 
+- вот только явно я тут не увидел, что он работает с сервером. ???
+
 Приложите в файл README.md скриншот раздела Monitoring > Latest data для обоих хостов, где видны поступающие от агентов данные.
 ![Alt text](image-3.png)
 
